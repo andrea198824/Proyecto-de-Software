@@ -40,6 +40,14 @@ CREATE TABLE ProductosFinancieros (
     updatedat DATE
 );
 
+CREATE TABLE TipoUsuario (
+    idtype INT PRIMARY KEY,
+    name VARCHAR(100) NOT NULL,
+    status INT,
+    createdat DATE,
+    updatedat DATE
+);
+
 -- 2. Tabla Clientes
 CREATE TABLE Clientes (
     idclient INT PRIMARY KEY,
@@ -58,13 +66,15 @@ CREATE TABLE Clientes (
     income INT,
     idcategory INT,
     score INT,
+    idtype INT,
     initdate DATE,
     createdat DATE,
     updatedat DATE,
     FOREIGN KEY (idsubsidiary) REFERENCES Sucursales(idsubsidiary),
     FOREIGN KEY (idstudy) REFERENCES NivelAcademico(idstudy),
     FOREIGN KEY (idocupation) REFERENCES Ocupacion(idocupation),
-    FOREIGN KEY (idcategory) REFERENCES Categorias(idcategory)
+    FOREIGN KEY (idcategory) REFERENCES Categorias(idcategory),
+    FOREIGN KEY (idtype) REFERENCES TipoUsuario(idtype)
 );
 
 -- 3. Tabla FormularioPrestamo (Se agregó una clave primaria autoincremental)
